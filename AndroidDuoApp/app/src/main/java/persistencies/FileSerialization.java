@@ -1,10 +1,10 @@
 package persistencies;
 
-import domain.domain_classes.Place;
-import domain.domain_classes.Planning;
-import domain.interfaces.IPersistence;
-
 import java.util.List;
+
+import classes.Place;
+import classes.Planning;
+import interfaces.IPersistence;
 
 public class FileSerialization implements IPersistence
 {

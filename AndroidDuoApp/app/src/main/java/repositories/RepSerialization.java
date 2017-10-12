@@ -1,12 +1,12 @@
 package repositories;
 
-import domain.domain_classes.Place;
-import domain.domain_classes.Planning;
-import domain.interfaces.IPersistence;
-import domain.persistencies.FileSerialization;
 
-import java.util.Collections;
 import java.util.List;
+
+import classes.Place;
+import classes.Planning;
+import interfaces.IPersistence;
+import persistencies.FileSerialization;
 
 public class RepSerialization {
 
@@ -18,7 +18,7 @@ public class RepSerialization {
         fileSerialization = new FileSerialization();
     }
 
-    public List<Planning> getPlanningenSortedASC()
+    private List<Planning> getPlanningenSortedASC()
     {
         planningen = fileSerialization.getPlanningen();
 
