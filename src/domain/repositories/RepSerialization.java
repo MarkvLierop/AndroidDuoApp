@@ -3,7 +3,6 @@ package domain.repositories;
 import domain.domain_classes.Planning;
 import domain.interfaces.IPersistence;
 import domain.persistencies.FileSerialization;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,12 +21,12 @@ public class RepSerialization {
     {
         planningen = fileSerialization.getPlanningen();
 
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public List<Planning> getGetPlanningenSortedDESC()
     {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public void addPlanning(Planning planning)
