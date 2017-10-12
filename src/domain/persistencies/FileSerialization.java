@@ -1,5 +1,6 @@
 package domain.persistencies;
 
+import domain.domain_classes.Place;
 import domain.domain_classes.Planning;
 import domain.interfaces.IPersistence;
 
@@ -17,4 +18,7 @@ public class FileSerialization implements IPersistence
     public void addPlanning(Planning planning) {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void addPlace(Planning planning, Place place) { throw new UnsupportedOperationException(); }
 }

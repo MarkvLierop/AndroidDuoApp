@@ -1,5 +1,6 @@
 package domain.repositories;
 
+import domain.domain_classes.Place;
 import domain.domain_classes.Planning;
 import domain.interfaces.IPersistence;
 import domain.persistencies.FileSerialization;
@@ -33,4 +34,6 @@ public class RepSerialization {
     {
         fileSerialization.addPlanning(planning);
     }
+
+    public void addPlace(Planning planning, Place place) {fileSerialization.addPlace(planning, place);}
 }
