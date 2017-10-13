@@ -2,7 +2,6 @@ package interfaces;
 
 
 import java.util.List;
-
 import classes.Place;
 import classes.Planning;
 
