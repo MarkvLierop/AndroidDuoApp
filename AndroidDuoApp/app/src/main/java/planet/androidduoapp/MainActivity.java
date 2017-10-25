@@ -18,19 +18,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static planet.androidduoapp.R.id.container;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
     private SectionsPageAdapter mSectionsPageAdapter;
-
     private ViewPager mViewPager;
+    private Button btnApplyFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +46,18 @@ public class MainActivity extends AppCompatActivity {
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         //Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(container);
         setupViewPager(mViewPager);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        btnApplyFilter = (Button)findViewById(R.id.btnApplyFilter);
+        btnApplyFilter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Menuke komt nu", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setupViewPager(ViewPager viewPager) {
