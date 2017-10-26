@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Tab1Fragment(), "Map");
+        //adapter.addFragment(new GoogleMapsActivity(), "Map");
         adapter.addFragment(new Tab2Fragment(), "Overzicht");
         viewPager.setAdapter(adapter);
     }
