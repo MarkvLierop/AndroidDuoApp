@@ -10,6 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
+import classes.GoogleApi;
+
 /**
  * Created by Lorenso on 13-Oct-17.
  */
@@ -28,6 +34,13 @@ public class Tab1Fragment extends Fragment {
         btnMap.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Ja hier dus kaart!", Toast.LENGTH_SHORT).show();
+
+                GoogleApi ga = new GoogleApi();
+                try {
+                    ga.parseJSON();
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
