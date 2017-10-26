@@ -58,12 +58,12 @@ public class MainActivity extends AppCompatActivity {
         btnApplyFilter = (Button)findViewById(R.id.btnApplyFilter);
         btnApplyFilter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Menuke komt nu", Toast.LENGTH_SHORT).show();
+                startFilterActivity();
             }
         });
 
-        //Register for context menu.
-        registerForContextMenu(btnApplyFilter);
+//        //Register for context menu.
+//        registerForContextMenu(btnApplyFilter);
     }
 
     public void startFilterActivity() {
@@ -71,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(intent);
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        if(v.getId() == R.id.btnApplyFilter) {
-            this.getMenuInflater().inflate(R.menu.menu_filter, menu);
-        }
-        super.onCreateContextMenu(menu, v, menuInfo);
-    }
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+//        if(v.getId() == R.id.btnApplyFilter) {
+//            this.getMenuInflater().inflate(R.menu.menu_filter, menu);
+//        }
+//        super.onCreateContextMenu(menu, v, menuInfo);
+//    }
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
