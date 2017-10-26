@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/option1"
-        android:title="A Context Option" />
+        android:title="Restaurants" />
     <item android:id="@+id/option2"
-        android:title="Another Context Option" />
+        android:title="Shops" />
 </menu>
