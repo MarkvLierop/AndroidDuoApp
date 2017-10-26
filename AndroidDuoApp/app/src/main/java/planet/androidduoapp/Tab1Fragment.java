@@ -28,35 +28,25 @@ import classes.GoogleApi;
  * Created by Lorenso on 13-Oct-17.
  */
 
-public class Tab1Fragment extends Fragment implements OnMapReadyCallback {
+public class Tab1Fragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
 
-    private GoogleMap mMap;
+    private Button btnMap;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view  = inflater.inflate(R.layout.tab1_map, container, false);
+
+        btnMap = (Button) view.findViewById(R.id.btnMap);
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Ja hier dus map!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return view;
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
 
-        // permission check.
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-
-        mMap.setMyLocationEnabled(true);
-
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
 }
