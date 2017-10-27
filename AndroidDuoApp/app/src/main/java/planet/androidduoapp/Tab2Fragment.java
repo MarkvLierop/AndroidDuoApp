@@ -7,10 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,12 +38,14 @@ public class Tab2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view  = inflater.inflate(R.layout.tab2_overview, container, false);
 
-//        btnOverview = (Button) view.findViewById(R.id.btnOverview);
-//        btnOverview.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Toast.makeText(getActivity(), "Ja hier dus overzicht!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        btnOverview = (Button) view.findViewById(R.id.btnSort);
+        btnOverview.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Soorteer optiekes!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        places = loadPlaces();
 
         return view;
     }
@@ -45,28 +53,86 @@ public class Tab2Fragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LinearLayout ll = (LinearLayout) view.findViewById(R.id.llToLoad);
+//        LinearLayout ll = (LinearLayout) view.findViewById(R.id.llToLoad);
+//
+//        for(Button btn: loadPlaces()) {
+//            ll.addView(btn);
+//        }
 
-        for(Button btn: loadPlaces()) {
-            ll.addView(btn);
-        }
+
+
+//        ListView lv = (ListView) view.findViewById(R.id.lvPlaces);
+//
+//        Adapter adapter = new Adapter();
+//        lv.setAdapter(adapter);
+
     }
 
-    private List<Button> loadPlaces() {
-        places = new ArrayList<Place>();
-        List<Button> buttons = new ArrayList<>();
+    private ArrayList<Place> loadPlaces() {
+//        places = new ArrayList<Place>();
+//        List<Button> buttons = new ArrayList<>();
+//        Place p = new Place();
+//        p.setPlaceName("Test gooiende");
+//        places.add(p);
+//
+//        for (Place place : places) {
+//            Button toAdd = new Button(this.getContext());
+//            toAdd.setText(place.getPlaceName());
+//
+//            buttons.add(toAdd);
+//
+//        }
+        Timestamp current = new Timestamp(12, 12, 12, 12,12,12,12);
+
+        ArrayList<Place> placesNew = new ArrayList<Place>();
+
         Place p = new Place();
-        p.setPlaceName("Test gooiende");
-        places.add(p);
 
-        for (Place place : places) {
-            Button toAdd = new Button(this.getContext());
-            toAdd.setText(place.getPlaceName());
+//        p.setPlaceImage();
+        p.setPlaceName("Lorenso restaurant");
+        p.setOpenTime(current);
+        p.setDistanceInM(600);
 
-            buttons.add(toAdd);
+        placesNew.add(p);
 
+        return placesNew;
+    }
+
+    private class Adapter extends BaseAdapter{
+
+        @Override
+        public int getCount() {
+            return places.size();
         }
-        return buttons;
+
+        @Override
+        public Object getItem(int position) {
+            return places.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = getActivity().getLayoutInflater().inflate(R.layout.list_item_overview, null);
+
+//            ImageView ivPic = (ImageView) view.findViewById(R.id.ivPicPlace);
+            TextView tvname = (TextView) view.findViewById(R.id.tvNamePlace);
+            RatingBar rbRating = (RatingBar) view.findViewById(R.id.rbRatingPlace);
+            TextView tvOpeningTime = (TextView) view.findViewById(R.id.tvOpeningTimePlace);
+            TextView tvDistance = (TextView) view.findViewById(R.id.tvDistancePlace);
+
+//            ivPic.setImageBitmap(places.get(position).getPlaceImage());
+            tvname.setText(places.get(position).getPlaceName());
+            rbRating.setRating(places.get(position).getStars());
+            tvOpeningTime.setText(places.get(position).getOpenTime().toString());
+            tvDistance.setText(places.get(position).getDistanceInM());
+
+            return view;
+        }
     }
 }
 
