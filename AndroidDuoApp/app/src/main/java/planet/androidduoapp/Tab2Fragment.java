@@ -1,5 +1,6 @@
 package planet.androidduoapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,7 +25,7 @@ public class Tab2Fragment extends Fragment {
     private ArrayList<Place> places;
 
     private Button btnOverview;
-    private LinearLayout ll = new LinearLayout()
+    private LinearLayout ll;
 
     @Nullable
     @Override
@@ -40,7 +41,9 @@ public class Tab2Fragment extends Fragment {
 
         LinearLayout ll = (LinearLayout) getView().findViewById(R.id.llToLoad);
 
-
+        for(Button btn: loadPlaces()) {
+            ll.addView(btn);
+        }
 
 
         return view;
@@ -48,11 +51,19 @@ public class Tab2Fragment extends Fragment {
 
     private List<Button> loadPlaces() {
         places = new ArrayList<Place>();
-        List<Button> buttons = new ArrayList<>()
+        List<Button> buttons = new ArrayList<>();
+        Place p = new Place();
+        p.setPlaceName("Test gooiende");
+        places.add(p);
 
         for (Place place : places) {
+            Button toAdd = new Button(this.getContext());
+            toAdd.setText(place.getPlaceName());
+
+            buttons.add(toAdd);
 
         }
+        return buttons;
     }
 }
 
