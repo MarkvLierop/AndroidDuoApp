@@ -7,7 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import classes.Place;
 
 /**
  * Created by Lorenso on 13-Oct-17.
@@ -15,8 +21,10 @@ import android.widget.Toast;
 
 public class Tab2Fragment extends Fragment {
     private static final String TAG = "Tab2Fragment";
+    private ArrayList<Place> places;
 
     private Button btnOverview;
+    private LinearLayout ll = new LinearLayout()
 
     @Nullable
     @Override
@@ -30,6 +38,22 @@ public class Tab2Fragment extends Fragment {
             }
         });
 
+        LinearLayout ll = (LinearLayout) getView().findViewById(R.id.llToLoad);
+
+
+
+
         return view;
     }
+
+    private List<Button> loadPlaces() {
+        places = new ArrayList<Place>();
+        List<Button> buttons = new ArrayList<>()
+
+        for (Place place : places) {
+
+        }
+    }
 }
+
+
