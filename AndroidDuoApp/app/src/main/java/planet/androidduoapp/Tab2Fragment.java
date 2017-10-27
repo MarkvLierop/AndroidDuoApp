@@ -32,21 +32,24 @@ public class Tab2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view  = inflater.inflate(R.layout.tab2_overview, container, false);
 
-        btnOverview = (Button) view.findViewById(R.id.btnOverview);
-        btnOverview.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Ja hier dus overzicht!", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        btnOverview = (Button) view.findViewById(R.id.btnOverview);
+//        btnOverview.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Toast.makeText(getActivity(), "Ja hier dus overzicht!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         LinearLayout ll = (LinearLayout) view.findViewById(R.id.llToLoad);
 
         for(Button btn: loadPlaces()) {
             ll.addView(btn);
         }
-
-
-        return view;
     }
 
     private List<Button> loadPlaces() {
