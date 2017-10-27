@@ -39,7 +39,7 @@ public class Tab2Fragment extends Fragment {
             }
         });
 
-        LinearLayout ll = (LinearLayout) getView().findViewById(R.id.llToLoad);
+        LinearLayout ll = (LinearLayout) view.findViewById(R.id.llToLoad);
 
         for(Button btn: loadPlaces()) {
             ll.addView(btn);
