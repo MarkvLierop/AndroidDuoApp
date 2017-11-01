@@ -1,16 +1,21 @@
 package classes;
 
+import android.graphics.Bitmap;
+import android.media.Image;
+
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
 public class Place {
 
+    private Bitmap placeImage;
     private String placeName;
     private String streetName;
     private String cityName;
     private String phoneNumber;
     private int stars;
+    private int distanceInM;
     private Timestamp openTime;
     private Timestamp closingTime;
 
@@ -75,5 +80,21 @@ public class Place {
 
     public void setClosingTime(Timestamp closingTime) {
         this.closingTime = closingTime;
+    }
+
+    public int getDistanceInM() {
+        return distanceInM;
+    }
+
+    public void setDistanceInM(int distanceInM) {
+        this.distanceInM = distanceInM;
+    }
+
+    public Bitmap getPlaceImage() {
+        return placeImage;
+    }
+
+    public void setPlaceImage(Bitmap placeImage) {
+        this.placeImage = placeImage;
     }
 }
