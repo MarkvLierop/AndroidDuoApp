@@ -1,12 +1,7 @@
 package planet.androidduoapp;
 
-<<<<<<< HEAD:AndroidDuoApp/app/src/main/java/planet/androidduoapp/GoogleMapsActivity.java
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-=======
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
->>>>>>> c70d03a0b6604d1e38a470681fbd4544645fca82:AndroidDuoApp/app/src/main/java/planet/androidduoapp/GoogleMapsFragment.java
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +15,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-<<<<<<< HEAD:AndroidDuoApp/app/src/main/java/planet/androidduoapp/GoogleMapsActivity.java
-public class GoogleMapsActivity extends Fragment {
-=======
 public class GoogleMapsFragment extends Fragment {
->>>>>>> c70d03a0b6604d1e38a470681fbd4544645fca82:AndroidDuoApp/app/src/main/java/planet/androidduoapp/GoogleMapsFragment.java
     MapView mMapView;
     private GoogleMap googleMap;
 
