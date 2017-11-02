@@ -1,5 +1,7 @@
 package planet.androidduoapp;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import  android.support.design.widget.TabLayout;
@@ -12,7 +14,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
+    final Context context = this;
     private SectionsPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
     private Button btnApplyFilter;
@@ -45,7 +50,32 @@ public class MainActivity extends AppCompatActivity {
         btnApplyFilter = (Button)findViewById(R.id.btnApplyFilter);
         btnApplyFilter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startFilterActivity();
+                // custom dialog
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_filter);
+                //dialog.setTitle("Title...");
+
+                // set the custom dialog components - text, image and button
+                Spinner spinner = (Spinner) dialog.findViewById(R.id.spFacilityType);
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.facility_types, android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
+
+//                TextView text = (TextView) dialog.findViewById(R.id.text);
+//                text.setText("Android custom dialog example!");
+//                ImageView image = (ImageView) dialog.findViewById(R.id.image);
+//                image.setImageResource(R.drawable.ic_launcher);
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.btnApply);
+                // if button is clicked, close the custom dialog
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
             }
         });
 
@@ -54,8 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startFilterActivity() {
-        Intent intent = new Intent(MainActivity.this, FilterActivity.class);
-        MainActivity.this.startActivity(intent);
+
     }
 
 //    @Override
