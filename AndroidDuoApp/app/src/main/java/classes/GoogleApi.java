@@ -18,58 +18,106 @@ import java.util.List;
 
 public class GoogleApi
 {
-    private static String APIKEY = "AIzaSyAekDAiLYoKsFRCFfjFoEb1XoVYnxgIU9g";
+    private final static String APIKEY = "AIzaSyAekDAiLYoKsFRCFfjFoEb1XoVYnxgIU9g";
+
     public GoogleApi()
     {
-
+        ignoreThreadRequirement();
     }
 
-    public Place getPlaceData()
+    public Place getPlaceData(String placeID) throws IOException, JSONException
     {
+        String googleRequestURL = "https://maps.googleapis.com/maps/api/place/details/json?" +
+                                    "placeid="+placeID+"&" +
+                                    "key=" + APIKEY;
+        JSONObject object = parseJSON(googleRequestURL);
+
         throw new UnsupportedOperationException();
     }
 
+    public List<Place> getPlacesSortedByRatingASC()
+    {
+        throw new UnsupportedOperationException();
+    }
     public List<Place> getPlacesSortedByRatingDESC()
     {
         throw new UnsupportedOperationException();
     }
-
     public List<Place> getPlacesSortedByDistancesASC()
     {
         throw new UnsupportedOperationException();
     }
-
-    public List<Place> getPlacesRestaurants()
+    public List<Place> getPlacesSortedByDistancesDESC()
     {
         throw new UnsupportedOperationException();
     }
 
-    public List<Place> getPlacesMuseums()
+    public List<Place> getNearbyPlacesRestaurants(String locationX, String locationY) throws IOException, JSONException
     {
+        String googleRequestURL = "https://maps.googleapis.com/maps/api/place/radarsearch/json?"+
+                                    "location="+locationX + ","+ locationY+"&"+
+                                    "radius=5000&" +
+                                    "type=restaurant&" +
+                                    "key=" + APIKEY;
+        JSONObject object = parseJSON(googleRequestURL);
+
+        for (int i = 0; i < object.getJSONArray("results").length();i++)
+        {
+            JSONObject res = object.getJSONArray("results").getJSONObject(i).getJSONArray("geometry").getJSONObject(0);
+            System.out.println(res.getJSONObject("location").getString("lat"));
+            System.out.println(res.getJSONObject("location").getString("lng"));
+
+        }
         throw new UnsupportedOperationException();
     }
 
-    public List<Place> getPlacesCafes()
+    public List<Place> getNearbyPlacesMuseums(String locationX, String locationY) throws IOException, JSONException
     {
+        String googleRequestURL = "https://maps.googleapis.com/maps/api/place/radarsearch/json?"+
+                "location="+locationX + ","+ locationY+"&"+
+                "radius=5000&" +
+                "type=museum&" +
+                "key=" + APIKEY;
+        JSONObject object = parseJSON(googleRequestURL);
+
         throw new UnsupportedOperationException();
     }
 
-    public List<Place> getPlacesAid()
+    public List<Place> getNearbyPlacesCafes(String locationX, String locationY) throws IOException, JSONException
     {
+        String googleRequestURL = "https://maps.googleapis.com/maps/api/place/radarsearch/json?"+
+                "location="+locationX + ","+ locationY+"&"+
+                "radius=5000&" +
+                "type=restaurant&" +
+                "key=" + APIKEY;
+        JSONObject object = parseJSON(googleRequestURL);
+
         throw new UnsupportedOperationException();
     }
 
-    public void parseJSON() throws IOException, JSONException
+    public List<Place> getNearbyPlacesHealth(String locationX, String locationY) throws IOException, JSONException
     {
-        ignoreThreadRequirement();
+        String googleRequestURL = "https://maps.googleapis.com/maps/api/place/radarsearch/json?"+
+                "location="+locationX + ","+ locationY+"&"+
+                "radius=5000&" +
+                "type=health&" +
+                "key=" + APIKEY;
+        JSONObject object = parseJSON(googleRequestURL);
 
-        String Url = "https://maps.googleapis.com/maps/api/directions/json?origin=Bakel&destination=Helmond&key=" + APIKEY;
+        throw new UnsupportedOperationException();
+    }
+
+    public JSONObject parseJSON(String googleRequestURL) throws IOException, JSONException
+    {
+        // String om route te genereren
+        //String Url = "https://maps.googleapis.com/maps/api/directions/json?origin=Bakel&destination=Helmond&key=" + APIKEY;
 
         StringBuilder jsonResults = new StringBuilder();
-        URL url = new URL(Url);
-        Log.d("tag", Url);
+        URL url = new URL(googleRequestURL);
+        Log.d("tag", googleRequestURL);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         InputStreamReader in = new InputStreamReader(conn.getInputStream());
+
         // Load the results into a StringBuilder
         int read;
         char[] buff = new char[1024];
@@ -78,14 +126,17 @@ public class GoogleApi
         }
         conn.disconnect();
 
-        JSONObject object = new JSONObject(jsonResults.toString());
-        JSONObject res = object.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(0);
-        System.out.println(res.getString("start_address"));
-        System.out.println(res.getJSONObject("start_location").getString("lat"));
-        System.out.println(res.getJSONObject("start_location").getString("lng"));
+        return new JSONObject(jsonResults.toString());
+
+        // voorbeeld voor het uitlezen van JSON request
+//        JSONObject res = object.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(0);
+//        System.out.println(res.getString("start_address"));
+//        System.out.println(res.getJSONObject("start_location").getString("lat"));
+//        System.out.println(res.getJSONObject("start_location").getString("lng"));
 
     }
 
+    // Vanwege instellingen moet een URL request in een thread gebeuren. Dit zorgt ervoor dat er geen thread nodig is.
     private void ignoreThreadRequirement()
     {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
