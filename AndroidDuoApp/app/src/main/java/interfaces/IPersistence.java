@@ -3,11 +3,11 @@ package interfaces;
 
 import java.util.List;
 import classes.Place;
-import classes.Planning;
+import classes.Schedule;
 
 public interface IPersistence {
 
-    List<Planning> getPlanningen();
-    void addPlanning(Planning planning);
-    void addPlace(Planning planning, Place place);
+    List<Schedule> getPlanningen();
+    void addPlanning(Schedule schedule);
+    void addPlace(Schedule schedule, Place place);
 }

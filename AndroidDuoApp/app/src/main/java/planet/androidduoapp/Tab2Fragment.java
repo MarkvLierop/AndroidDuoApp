@@ -26,6 +26,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 import classes.Place;
 
@@ -134,7 +135,7 @@ public class Tab2Fragment extends Fragment {
             super(context, textViewResourceId);
         }
 
-        public ListAdapter(Context context, int resource, ArrayList<Place> items) {
+        public ListAdapter(Context context, int resource, List<Place> items) {
             super(context, resource, items);
         }
 

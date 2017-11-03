@@ -7,6 +7,8 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.xml.datatype.Duration;
+
 public class Place {
 
     private Bitmap placeImage;
@@ -21,6 +23,8 @@ public class Place {
     private int distanceInM;
     private Timestamp openTime;
     private Timestamp closingTime;
+
+    private Duration TimeThere;
 
 
     public Place()
