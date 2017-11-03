@@ -1,9 +1,5 @@
 package classes;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.ImageFormat;
-import android.media.Image;
 import android.os.StrictMode;
 import android.util.Log;
 
@@ -18,40 +14,25 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.PublicKey;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GoogleApi
 {
     private final static String APIKEY = "AIzaSyAekDAiLYoKsFRCFfjFoEb1XoVYnxgIU9g";
-    private ArrayList<Place> places;
 
     public GoogleApi()
     {
         ignoreThreadRequirement();
     }
 
-    private Place getPlaceData(Place place) throws IOException, JSONException
+    public Place getPlaceData(String placeID) throws IOException, JSONException
     {
         String googleRequestURL = "https://maps.googleapis.com/maps/api/place/details/json?" +
-                                    "placeid="+place.getPlaceID()+"&" +
+                                    "placeid="+placeID+"&" +
                                     "key=" + APIKEY;
-
         JSONObject object = parseJSON(googleRequestURL);
-        JSONArray res = object.getJSONObject("result").getJSONArray("address_components");
 
-        for (int i = 0; i < res.length();i++)
-        {
-            place.setStreetName(res.getJSONObject(1).getString("long_name"));
-            place.setCityName(res.getJSONObject(3).getString("long_name"));
-        }
-
-        URL url = new URL(object.getJSONObject("result").getString("icon"));
-        place.setPlaceImage(BitmapFactory.decodeStream(url.openConnection().getInputStream()));
-        place.setPhoneNumber(object.getJSONObject("result").getString("formatted_phone_number"));
-        place.setPlaceName(object.getJSONObject("result").getString("name"));
-
-        return place;
+        throw new UnsupportedOperationException();
     }
 
     public List<Place> getPlacesSortedByRatingASC()
@@ -73,8 +54,6 @@ public class GoogleApi
 
     public List<Place> getNearbyPlacesRestaurants(String locationX, String locationY) throws IOException, JSONException
     {
-        places = new ArrayList<>();
-
         String googleRequestURL = "https://maps.googleapis.com/maps/api/place/radarsearch/json?"+
                                     "location="+locationX + ","+ locationY+"&"+
                                     "radius=5000&" +
@@ -84,19 +63,12 @@ public class GoogleApi
 
         for (int i = 0; i < object.getJSONArray("results").length();i++)
         {
-            Place place = new Place();
-
-            JSONObject res = object.getJSONArray("results").getJSONObject(i).getJSONObject("geometry").getJSONObject("location");
-
-            place.setLocationX(res.getString("lat"));
-            place.setLocationY(res.getString("lng"));
-            place.setPlaceID(object.getJSONArray("results").getJSONObject(i).getString("place_id"));
-
-            place = getPlaceData(place);
-            places.add(place);
+            JSONObject res = object.getJSONArray("results").getJSONObject(i).getJSONArray("geometry").getJSONObject(0);
+            System.out.println(res.getJSONObject("location").getString("lat"));
+            System.out.println(res.getJSONObject("location").getString("lng"));
 
         }
-        return places;
+        throw new UnsupportedOperationException();
     }
 
     public List<Place> getNearbyPlacesMuseums(String locationX, String locationY) throws IOException, JSONException

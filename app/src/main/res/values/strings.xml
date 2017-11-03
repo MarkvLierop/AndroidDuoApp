@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AndroidDuoApp</string>
+    <string name="title_activity_google_maps">Map</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string-array name="facility_types">
+        <item>Restaurants</item>
+        <item>Shops</item>
+        <item>Museums</item>
+        <item>Cafes</item>
+        <item>Aid</item>
+        <item>Companies</item>
+    </string-array>
+</resources>

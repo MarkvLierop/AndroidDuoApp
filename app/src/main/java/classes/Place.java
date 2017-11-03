@@ -10,9 +10,6 @@ import java.util.Date;
 public class Place {
 
     private Bitmap placeImage;
-    private String locationX;
-    private String locationY;
-    private String placeID;
     private String placeName;
     private String streetName;
     private String cityName;
@@ -99,29 +96,5 @@ public class Place {
 
     public void setPlaceImage(Bitmap placeImage) {
         this.placeImage = placeImage;
-    }
-
-    public String getPlaceID() {
-        return placeID;
-    }
-
-    public void setPlaceID(String placeID) {
-        this.placeID = placeID;
-    }
-
-    public String getLocationY() {
-        return locationY;
-    }
-
-    public void setLocationY(String locationY) {
-        this.locationY = locationY;
-    }
-
-    public String getLocationX() {
-        return locationX;
-    }
-
-    public void setLocationX(String locationX) {
-        this.locationX = locationX;
     }
 }
