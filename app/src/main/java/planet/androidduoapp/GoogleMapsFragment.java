@@ -15,7 +15,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-
 public class GoogleMapsFragment extends Fragment {
     MapView mMapView;
     private GoogleMap googleMap;
@@ -41,8 +40,10 @@ public class GoogleMapsFragment extends Fragment {
             public void onMapReady(GoogleMap mMap) {
                 googleMap = mMap;
 
+                //googleMap.setMyLocationEnabled(true);
+
                 // For dropping a marker at a point on the Map
-                LatLng sydney = new LatLng(51.4555001,5.4805959);
+                LatLng sydney = new LatLng(-34, 151);
                 googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
 
                 // For zooming automatically to the location of the marker

@@ -14,13 +14,8 @@ import android.view.View;
 
 import android.widget.Button;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import classes.GoogleApi;
 
 import static planet.androidduoapp.R.id.container;
 
@@ -53,17 +48,6 @@ public class MainActivity extends AppCompatActivity {
                 startFilterActivity();
             }
         });
-
-
-        GoogleApi ga = new GoogleApi();
-        try {
-            ga.getNearbyPlacesRestaurants("51.4555001","5.4805959");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
 
 //        //Register for context menu.
 //        registerForContextMenu(btnApplyFilter);
