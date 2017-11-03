@@ -28,7 +28,6 @@ import java.util.List;
 import classes.GoogleApi;
 
 import static planet.androidduoapp.R.id.container;
-import static planet.androidduoapp.R.id.fabPlan;
 
 public class MainActivity extends AppCompatActivity {
 
