@@ -13,4 +13,11 @@
         <item>Aid</item>
         <item>Companies</item>
     </string-array>
+
+    <string-array name="sort_options">
+        <item>Rating asc.</item>
+        <item>Rating dec.</item>
+        <item>Distance asc.</item>
+        <item>Distance dec.</item>
+    </string-array>
 </resources>
