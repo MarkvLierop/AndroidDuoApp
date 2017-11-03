@@ -28,7 +28,6 @@ import java.util.List;
 import classes.GoogleApi;
 
 import static planet.androidduoapp.R.id.container;
-import static planet.androidduoapp.R.id.fabPlan;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         fab = (FloatingActionButton)findViewById(R.id.fabPlan);
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent plan = new Intent(MainActivity.this, PlanningActivity.class);
+                Intent plan = new Intent(MainActivity.this, ScheduleOverviewActivity.class);
                 startActivity(plan);
             }
         });
@@ -119,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new GoogleMapsFragment(), "Map");
-        adapter.addFragment(new Tab2Fragment(), "Overzicht");
+        adapter.addFragment(new Tab2Fragment(), "Overview");
         viewPager.setAdapter(adapter);
     }
 
