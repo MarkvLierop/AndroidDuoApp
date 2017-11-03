@@ -156,11 +156,6 @@ public class GoogleApi
 
         return new JSONObject(jsonResults.toString());
 
-        // voorbeeld voor het uitlezen van JSON request
-//        JSONObject res = object.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(0);
-//        System.out.println(res.getString("start_address"));
-//        System.out.println(res.getJSONObject("start_location").getString("lat"));
-//        System.out.println(res.getJSONObject("start_location").getString("lng"));
 
     }
 
