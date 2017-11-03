@@ -3,6 +3,8 @@ package planet.androidduoapp;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +20,11 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import classes.Place;
@@ -95,7 +102,7 @@ public class Tab2Fragment extends Fragment {
 
 
     private ArrayList<Place> loadPlaces() {
-//        Bitmap bitmap = null;
+        Bitmap bitmap = null;
 //        try {
 //            bitmap = BitmapFactory.decodeStream((InputStream)new URL("https://tctechcrunch2011.files.wordpress.com/2014/07/restaurant.jpg").getContent());
 //        } catch (MalformedURLException e) {
@@ -103,19 +110,19 @@ public class Tab2Fragment extends Fragment {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//
-//        Timestamp now = new Timestamp(new java.util.Date().getTime());
+
+        Timestamp now = new Timestamp(new java.util.Date().getTime());
 
         ArrayList<Place> placesNew = new ArrayList<Place>();
 
-//        Place p = new Place();
-//
-//        p.setPlaceImage(bitmap);
-//        p.setPlaceName("Lorenso restaurant");
-//        p.setOpenTime(now);
-//        p.setDistanceInM(600);
-//
-//        placesNew.add(p);
+        Place p = new Place();
+
+        p.setPlaceImage(bitmap);
+        p.setPlaceName("Lorenso restaurant");
+        p.setOpenTime(now);
+        p.setDistanceInM(600);
+
+        placesNew.add(p);
 
         return placesNew;
     }
@@ -155,7 +162,7 @@ public class Tab2Fragment extends Fragment {
                 tvname.setText(p.getPlaceName());
                 rbRating.setRating(p.getStars());
                 tvOpeningTime.setText(p.getOpenTime().toString());
-                tvDistance.setText(p.getDistanceInM());
+                tvDistance.setText(String.valueOf(p.getDistanceInM()) + "m van je vandaan.");
             }
 
             return v;

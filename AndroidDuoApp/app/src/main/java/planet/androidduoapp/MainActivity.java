@@ -3,6 +3,7 @@ package planet.androidduoapp;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import  android.support.design.widget.TabLayout;
 
@@ -22,15 +23,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static planet.androidduoapp.R.id.container;
+import static planet.androidduoapp.R.id.fabPlan;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
     final Context context = this;
+
     private SectionsPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
     private Button btnApplyFilter;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
 
-//                TextView text = (TextView) dialog.findViewById(R.id.text);
-//                text.setText("Android custom dialog example!");
-//                ImageView image = (ImageView) dialog.findViewById(R.id.image);
-//                image.setImageResource(R.drawable.ic_launcher);
-
                 Button dialogButton = (Button) dialog.findViewById(R.id.btnApply);
                 // if button is clicked, close the custom dialog
                 dialogButton.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +78,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        //Register for context menu.
-//        registerForContextMenu(btnApplyFilter);
+        fab = (FloatingActionButton)findViewById(R.id.fabPlan);
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent plan = new Intent(MainActivity.this, PlanningActivity.class);
+                startActivity(plan);
+            }
+        });
+
     }
 
     public void startFilterActivity() {
