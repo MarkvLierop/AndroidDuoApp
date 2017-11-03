@@ -76,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
+                        GoogleApi ga = new GoogleApi();
+                        try {
+                            ga.getNearbyPlacesRestaurants("51.4555001","5.4805959");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -90,16 +98,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(plan);
             }
         });
-
-
-        GoogleApi ga = new GoogleApi();
-        try {
-            ga.getNearbyPlacesRestaurants("51.4555001","5.4805959");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
 
 //        //Register for context menu.
