@@ -50,6 +50,10 @@ public class GoogleApi
         place.setPlaceImage(BitmapFactory.decodeStream(url.openConnection().getInputStream()));
         place.setPhoneNumber(object.getJSONObject("result").getString("formatted_phone_number"));
         place.setPlaceName(object.getJSONObject("result").getString("name"));
+        // werkt niet
+        place.setOpenNow(object.getJSONObject("result").getJSONObject("opening_hours").getString("open_now").equals("true") ? "Yes" : "No");
+        // werkt well
+        place.setOpenNow("No");
 
         return place;
     }

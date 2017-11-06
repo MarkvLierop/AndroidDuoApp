@@ -21,8 +21,7 @@ public class Place {
     private String phoneNumber;
     private int stars;
     private int distanceInM;
-    private Timestamp openTime;
-    private Timestamp closingTime;
+    private String openNow;
 
     private Duration TimeThere;
 
@@ -73,22 +72,6 @@ public class Place {
         this.stars = stars;
     }
 
-    public Timestamp getOpenTime() {
-        return openTime;
-    }
-
-    public void setOpenTime(Timestamp openTime) {
-        this.openTime = openTime;
-    }
-
-    public Timestamp getClosingTime() {
-        return closingTime;
-    }
-
-    public void setClosingTime(Timestamp closingTime) {
-        this.closingTime = closingTime;
-    }
-
     public int getDistanceInM() {
         return distanceInM;
     }
@@ -127,5 +110,13 @@ public class Place {
 
     public void setLocationX(String locationX) {
         this.locationX = locationX;
+    }
+
+    public String isOpenNow() {
+        return openNow;
+    }
+
+    public void setOpenNow(String openNow) {
+        this.openNow = openNow;
     }
 }

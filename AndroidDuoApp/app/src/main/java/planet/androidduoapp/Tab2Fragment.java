@@ -93,16 +93,6 @@ public class Tab2Fragment extends Fragment {
         MainActivity ma = (MainActivity)getActivity();
         places = ma.getPlaces();
 
-        // Alternatief
-//        GoogleApi ga = new GoogleApi();
-//        try {
-//            places = ga.getNearbyPlacesRestaurants("51.4555001","5.4805959");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
         ListAdapter adapter = new ListAdapter(this.getContext(), R.layout.list_item_overview, places);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -113,33 +103,6 @@ public class Tab2Fragment extends Fragment {
         });
 
 
-    }
-
-
-    private ArrayList<Place> loadPlaces() {
-        Bitmap bitmap = null;
-//        try {
-//            bitmap = BitmapFactory.decodeStream((InputStream)new URL("https://tctechcrunch2011.files.wordpress.com/2014/07/restaurant.jpg").getContent());
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        Timestamp now = new Timestamp(new java.util.Date().getTime());
-
-        ArrayList<Place> placesNew = new ArrayList<Place>();
-
-        Place p = new Place();
-
-        p.setPlaceImage(bitmap);
-        p.setPlaceName("Lorenso restaurant");
-        p.setOpenTime(now);
-        p.setDistanceInM(600);
-
-        placesNew.add(p);
-
-        return placesNew;
     }
 
 
@@ -176,7 +139,7 @@ public class Tab2Fragment extends Fragment {
                 ivPic.setImageBitmap(p.getPlaceImage());
                 tvname.setText(p.getPlaceName());
                 rbRating.setRating(p.getStars());
-                tvOpeningTime.setText(p.getOpenTime().toString());
+                tvOpeningTime.setText(p.isOpenNow());
                 tvDistance.setText(String.valueOf(p.getDistanceInM()) + "m van je vandaan.");
             }
 
