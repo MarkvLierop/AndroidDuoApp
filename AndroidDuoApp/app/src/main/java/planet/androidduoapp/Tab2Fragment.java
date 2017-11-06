@@ -20,6 +20,8 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -28,6 +30,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import classes.GoogleApi;
 import classes.Place;
 
 /**
@@ -36,7 +39,7 @@ import classes.Place;
 
 public class Tab2Fragment extends Fragment {
     private static final String TAG = "Tab2Fragment";
-    private ArrayList<Place> places;
+    private List<Place> places;
 
     private Button btnOverview;
     private ListView lv;
@@ -87,7 +90,18 @@ public class Tab2Fragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        places = loadPlaces();
+        MainActivity ma = (MainActivity)getActivity();
+        places = ma.getPlaces();
+
+        // Alternatief
+//        GoogleApi ga = new GoogleApi();
+//        try {
+//            places = ga.getNearbyPlacesRestaurants("51.4555001","5.4805959");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
         ListAdapter adapter = new ListAdapter(this.getContext(), R.layout.list_item_overview, places);
         lv.setAdapter(adapter);

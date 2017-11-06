@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import classes.GoogleApi;
+import classes.Place;
 
 import static planet.androidduoapp.R.id.container;
 
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private Button btnApplyFilter;
     private FloatingActionButton fab;
+
+    private List<Place> places;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,14 +79,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        GoogleApi ga = new GoogleApi();
-                        try {
-                            ga.getNearbyPlacesRestaurants("51.4555001","5.4805959");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+//                        GoogleApi ga = new GoogleApi();
+//                        try {
+//                            places = ga.getNearbyPlacesRestaurants("51.4555001","5.4805959");
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 });
 
@@ -120,6 +124,22 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new GoogleMapsFragment(), "Map");
         adapter.addFragment(new Tab2Fragment(), "Overview");
         viewPager.setAdapter(adapter);
+    }
+
+    public List<Place> getPlaces() {
+        if (places == null)
+        {
+            GoogleApi ga = new GoogleApi();
+            try {
+                places = ga.getNearbyPlacesRestaurants("51.4555001","5.4805959");
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return places;
     }
 
 

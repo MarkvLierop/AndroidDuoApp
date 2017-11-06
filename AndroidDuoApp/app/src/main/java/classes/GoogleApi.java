@@ -54,23 +54,6 @@ public class GoogleApi
         return place;
     }
 
-    public List<Place> getPlacesSortedByRatingASC()
-    {
-        throw new UnsupportedOperationException();
-    }
-    public List<Place> getPlacesSortedByRatingDESC()
-    {
-        throw new UnsupportedOperationException();
-    }
-    public List<Place> getPlacesSortedByDistancesASC()
-    {
-        throw new UnsupportedOperationException();
-    }
-    public List<Place> getPlacesSortedByDistancesDESC()
-    {
-        throw new UnsupportedOperationException();
-    }
-
     public List<Place> getNearbyPlacesRestaurants(String locationX, String locationY) throws IOException, JSONException
     {
         places = new ArrayList<>();
@@ -80,22 +63,10 @@ public class GoogleApi
                                     "radius=5000&" +
                                     "type=restaurant&" +
                                     "key=" + APIKEY;
+
         JSONObject object = parseJSON(googleRequestURL);
+        assignNearbyPlaceData(object);
 
-        for (int i = 0; i < object.getJSONArray("results").length();i++)
-        {
-            Place place = new Place();
-
-            JSONObject res = object.getJSONArray("results").getJSONObject(i).getJSONObject("geometry").getJSONObject("location");
-
-            place.setLocationX(res.getString("lat"));
-            place.setLocationY(res.getString("lng"));
-            place.setPlaceID(object.getJSONArray("results").getJSONObject(i).getString("place_id"));
-
-            place = getPlaceData(place);
-            places.add(place);
-
-        }
         return places;
     }
 
@@ -106,9 +77,11 @@ public class GoogleApi
                 "radius=5000&" +
                 "type=museum&" +
                 "key=" + APIKEY;
-        JSONObject object = parseJSON(googleRequestURL);
 
-        throw new UnsupportedOperationException();
+        JSONObject object = parseJSON(googleRequestURL);
+        assignNearbyPlaceData(object);
+
+        return places;
     }
 
     public List<Place> getNearbyPlacesCafes(String locationX, String locationY) throws IOException, JSONException
@@ -116,11 +89,13 @@ public class GoogleApi
         String googleRequestURL = "https://maps.googleapis.com/maps/api/place/radarsearch/json?"+
                 "location="+locationX + ","+ locationY+"&"+
                 "radius=5000&" +
-                "type=restaurant&" +
+                "type=cafe&" +
                 "key=" + APIKEY;
-        JSONObject object = parseJSON(googleRequestURL);
 
-        throw new UnsupportedOperationException();
+        JSONObject object = parseJSON(googleRequestURL);
+        assignNearbyPlaceData(object);
+
+        return places;
     }
 
     public List<Place> getNearbyPlacesHealth(String locationX, String locationY) throws IOException, JSONException
@@ -130,9 +105,11 @@ public class GoogleApi
                 "radius=5000&" +
                 "type=health&" +
                 "key=" + APIKEY;
-        JSONObject object = parseJSON(googleRequestURL);
 
-        throw new UnsupportedOperationException();
+        JSONObject object = parseJSON(googleRequestURL);
+        assignNearbyPlaceData(object);
+
+        return places;
     }
 
     public JSONObject parseJSON(String googleRequestURL) throws IOException, JSONException
@@ -157,6 +134,29 @@ public class GoogleApi
         return new JSONObject(jsonResults.toString());
 
 
+    }
+
+    private void assignNearbyPlaceData(JSONObject object) throws JSONException, IOException
+    {
+
+        for (int i = 0; i < object.getJSONArray("results").length();i++)
+        {
+            Place place = new Place();
+
+            JSONObject res = object.getJSONArray("results").getJSONObject(i).getJSONObject("geometry").getJSONObject("location");
+
+            place.setLocationX(res.getString("lat"));
+            place.setLocationY(res.getString("lng"));
+            place.setPlaceID(object.getJSONArray("results").getJSONObject(i).getString("place_id"));
+
+            place = getPlaceData(place);
+            places.add(place);
+
+            if (i == 10)
+            {
+                break;
+            }
+        }
     }
 
     // Vanwege instellingen moet een URL request in een thread gebeuren. Dit zorgt ervoor dat er geen thread nodig is.
