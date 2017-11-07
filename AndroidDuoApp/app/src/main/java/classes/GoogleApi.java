@@ -46,16 +46,33 @@ public class GoogleApi
             place.setCityName(res.getJSONObject(3).getString("long_name"));
         }
 
-        URL url = new URL(object.getJSONObject("result").getString("icon"));
-        place.setPlaceImage(BitmapFactory.decodeStream(url.openConnection().getInputStream()));
+        place.setPlaceImage(getPlacePhoto(object.getJSONObject("result").getJSONArray("photos").getJSONObject(0).getString("photo_reference")));
         place.setPhoneNumber(object.getJSONObject("result").getString("formatted_phone_number"));
         place.setPlaceName(object.getJSONObject("result").getString("name"));
+
+        //werkt niet - gaat fout op parseINT
+//        String a = object.getJSONObject("result").getString("rating");
+//        int b = Integer.parseInt(a);
+//        place.setStars(Math.round(Integer.parseInt(object.getJSONObject("result").getString("rating"))));
+
         // werkt niet
-        place.setOpenNow(object.getJSONObject("result").getJSONObject("opening_hours").getString("open_now").equals("true") ? "Yes" : "No");
+        //place.setOpenNow(object.getJSONObject("result").getJSONObject("opening_hours").getString("open_now").equals("true") ? "Yes" : "No");
         // werkt well
         place.setOpenNow("No");
 
         return place;
+    }
+
+    private Bitmap getPlacePhoto(String photoReference) throws IOException
+    {
+        String googleRequestURL = "https://maps.googleapis.com/maps/api/place/photo?" +
+                "maxwidth=400&" +
+                "photoreference=" + photoReference + "&" +
+                "key=" + APIKEY;
+
+        URL url = new URL(googleRequestURL);
+
+        return BitmapFactory.decodeStream(url.openConnection().getInputStream());
     }
 
     public List<Place> getNearbyPlacesRestaurants(String locationX, String locationY) throws IOException, JSONException

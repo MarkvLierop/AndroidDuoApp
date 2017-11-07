@@ -1,8 +1,10 @@
 package planet.androidduoapp;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,24 +16,25 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.json.JSONException;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 import classes.GoogleApi;
 import classes.Place;
+
 
 /**
  * Created by Lorenso on 13-Oct-17.
@@ -98,7 +101,18 @@ public class Tab2Fragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getActivity(), PlaceDetailsActivity.class);
 
+                ByteArrayOutputStream bs = new ByteArrayOutputStream();
+                places.get(position).getPlaceImage().compress(Bitmap.CompressFormat.PNG, 50, bs);
+                i.putExtra("image", bs.toByteArray());
+
+                i.putExtra("name", places.get(position).getPlaceName());
+                i.putExtra("phone", places.get(position).getPhoneNumber());
+                i.putExtra("open", places.get(position).isOpenNow());
+                i.putExtra("stars", places.get(position).getStars());
+                i.putExtra("address", places.get(position).getStreetName() + " " + places.get(position).getCityName());
+                startActivity(i);
             }
         });
 
@@ -139,8 +153,8 @@ public class Tab2Fragment extends Fragment {
                 ivPic.setImageBitmap(p.getPlaceImage());
                 tvname.setText(p.getPlaceName());
                 rbRating.setRating(p.getStars());
-                tvOpeningTime.setText(p.isOpenNow());
-                tvDistance.setText(String.valueOf(p.getDistanceInM()) + "m van je vandaan.");
+                tvOpeningTime.setText(String.format("Is open now: %s", p.isOpenNow()));
+                tvDistance.setText(String.format("%sm van je vandaan.", String.valueOf(p.getDistanceInM())));
             }
 
             return v;
