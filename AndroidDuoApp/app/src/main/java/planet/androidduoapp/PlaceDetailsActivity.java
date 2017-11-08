@@ -43,6 +43,6 @@ public class PlaceDetailsActivity extends AppCompatActivity {
         open.setEnabled(false);
 
         RatingBar rb = (RatingBar)findViewById(R.id.rbPlaceRating);
-        rb.setRating(Integer.parseInt(intent.getStringExtra("stars")));
+        //rb.setRating(Integer.parseInt(intent.getStringExtra("stars")));
     }
 }
