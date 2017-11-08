@@ -50,10 +50,10 @@ public class GoogleApi
         place.setPhoneNumber(object.getJSONObject("result").getString("formatted_phone_number"));
         place.setPlaceName(object.getJSONObject("result").getString("name"));
 
-        //werkt niet - gaat fout op parseINT
-//        String a = object.getJSONObject("result").getString("rating");
-//        int b = Integer.parseInt(a);
-//        place.setStars(Math.round(Integer.parseInt(object.getJSONObject("result").getString("rating"))));
+        //Set rating
+        String a = object.getJSONObject("result").getString("rating");
+        double b = Double.parseDouble(a); //Integer.parseInt(a);
+        place.setStars((int) Math.round(b));
 
         // werkt niet
         //place.setOpenNow(object.getJSONObject("result").getJSONObject("opening_hours").getString("open_now").equals("true") ? "Yes" : "No");
