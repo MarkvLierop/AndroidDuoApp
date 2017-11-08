@@ -20,7 +20,7 @@ public class Place {
     private String cityName;
     private String phoneNumber;
     private int stars;
-    private int distanceInM;
+    private String distanceInM;
     private String openNow;
 
     private Duration TimeThere;
@@ -72,11 +72,11 @@ public class Place {
         this.stars = stars;
     }
 
-    public int getDistanceInM() {
+    public String getDistanceInM() {
         return distanceInM;
     }
 
-    public void setDistanceInM(int distanceInM) {
+    public void setDistanceInM(String distanceInM) {
         this.distanceInM = distanceInM;
     }
 

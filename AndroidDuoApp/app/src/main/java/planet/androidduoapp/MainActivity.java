@@ -27,6 +27,7 @@ import java.util.List;
 
 import classes.GoogleApi;
 import classes.Place;
+import classes.PublicValues;
 
 import static planet.androidduoapp.R.id.container;
 
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         {
             GoogleApi ga = new GoogleApi();
             try {
-                places = ga.getNearbyPlacesRestaurants("51.4555001","5.4805959");
+                places = ga.getNearbyPlacesRestaurants(PublicValues.myLocationLat, PublicValues.myLocationLng);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {
