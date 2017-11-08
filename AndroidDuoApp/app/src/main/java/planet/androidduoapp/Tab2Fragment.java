@@ -103,15 +103,13 @@ public class Tab2Fragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getActivity(), PlaceDetailsActivity.class);
 
+                Place p = places.get(position);
+                i.putExtra("place", p);
+
                 ByteArrayOutputStream bs = new ByteArrayOutputStream();
                 places.get(position).getPlaceImage().compress(Bitmap.CompressFormat.PNG, 50, bs);
                 i.putExtra("image", bs.toByteArray());
 
-                i.putExtra("name", places.get(position).getPlaceName());
-                i.putExtra("phone", places.get(position).getPhoneNumber());
-                i.putExtra("open", places.get(position).isOpenNow());
-                i.putExtra("stars", places.get(position).getStars());
-                i.putExtra("address", places.get(position).getStreetName() + " " + places.get(position).getCityName());
                 startActivity(i);
             }
         });

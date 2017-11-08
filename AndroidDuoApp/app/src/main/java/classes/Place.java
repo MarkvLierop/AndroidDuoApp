@@ -3,15 +3,16 @@ package classes;
 import android.graphics.Bitmap;
 import android.media.Image;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.xml.datatype.Duration;
 
-public class Place {
+public class Place implements Serializable{
 
-    private Bitmap placeImage;
+    private transient Bitmap placeImage;
     private String locationX;
     private String locationY;
     private String placeID;

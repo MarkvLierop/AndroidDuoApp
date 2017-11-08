@@ -6,63 +6,47 @@
     android:layout_height="match_parent"
     tools:context="planet.androidduoapp.PlaceDetailsActivity">
 
-    <EditText
-        android:id="@+id/txtplaceName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_marginTop="8dp"
-        android:layout_below="@+id/imgplaceDetailsPlaceImage"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:id="@+id/txtplaceDetailsPlaceAdress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_below="@+id/txtplaceName"
-        android:layout_alignStart="@+id/txtplaceName"
-        android:layout_marginTop="12dp" />
-
-    <EditText
-        android:id="@+id/txtplaceDetailsPlacePhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone"
-        android:layout_below="@+id/txtplaceDetailsPlaceAdress"
-        android:layout_alignStart="@+id/txtplaceDetailsPlaceAdress" />
-
-    <EditText
-        android:id="@+id/txtplaceDetailsOpenNow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_marginTop="8dp"
-        android:layout_below="@+id/txtplaceDetailsPlacePhoneNumber"
-        android:layout_alignStart="@+id/txtplaceDetailsPlacePhoneNumber" />
-
     <ImageView
         android:id="@+id/imgplaceDetailsPlaceImage"
-        android:layout_width="370dp"
+        android:layout_width="match_parent"
         android:layout_height="182dp"
         app:srcCompat="@drawable/common_full_open_on_phone"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imgplaceDetailsPlaceImage"
+        android:background="@color/colorPrimary"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/tvAdress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <RatingBar
         android:id="@+id/rbPlaceRating"
         style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtplaceDetailsOpenNow"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
         android:numStars="5"
-        android:rating="4" />
+        android:rating="4"
+        android:layout_below="@+id/tvIsOpen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp" />
 
     <Button
         android:id="@+id/btnAddToPlanning"
@@ -75,5 +59,26 @@
         android:layout_marginBottom="17dp"
 
         />
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tvIsOpen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_below="@+id/tvPhone"
+        android:layout_alignStart="@+id/tvPhone" />
 
 </RelativeLayout>
