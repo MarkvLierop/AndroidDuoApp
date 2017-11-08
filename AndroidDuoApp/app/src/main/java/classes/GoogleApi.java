@@ -91,7 +91,7 @@ public class GoogleApi
                 "key=" + APIKEY;
 
         JSONObject object = parseJSON(googleRequestURL);
-        String distance = object.getJSONArray("rows").getJSONArray(0).getJSONObject(0).getString("text");
+        String distance = object.getJSONArray("rows").getJSONObject(0).getJSONObject("distance").getString("text");
 
         return distance;
     }
