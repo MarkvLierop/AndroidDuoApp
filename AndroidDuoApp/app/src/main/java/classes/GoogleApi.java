@@ -50,6 +50,10 @@ public class GoogleApi
         place.setPhoneNumber(object.getJSONObject("result").getString("formatted_phone_number"));
         place.setPlaceName(object.getJSONObject("result").getString("name"));
 
+        String lat = object.getJSONObject("result").getJSONObject("geometry").getJSONObject("location").getString("lat");
+        String lng = object.getJSONObject("result").getJSONObject("geometry").getJSONObject("location").getString("lng");
+        place.setDistanceInM(getDistance(lat, lng));
+
         //werkt niet - gaat fout op parseINT
 //        String a = object.getJSONObject("result").getString("rating");
 //        int b = Integer.parseInt(a);
@@ -75,6 +79,18 @@ public class GoogleApi
         return BitmapFactory.decodeStream(url.openConnection().getInputStream());
     }
 
+    private String getDistance(String destinationX, String destinationY) throws IOException, JSONException {
+        String googleRequestURL = "https://maps.googleapis.com/maps/api/distancematrix/json?" +
+                "units=metric&" +
+                "origins="+ PublicValues.myLocationLat + ","+ PublicValues.myLocationLng + "&" +
+                "destinations="+ destinationX + "%2C-"+ destinationY+"&" +
+                "key=" + APIKEY;
+
+        JSONObject object = parseJSON(googleRequestURL);
+        String distance = object.getJSONArray("rows").getJSONArray(0).getJSONObject(0).getString("text");
+
+        return distance;
+    }
     public List<Place> getNearbyPlacesRestaurants(String locationX, String locationY) throws IOException, JSONException
     {
         places = new ArrayList<>();
