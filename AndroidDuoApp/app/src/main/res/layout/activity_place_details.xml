@@ -26,27 +26,62 @@
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="36sp" />
 
-    <TextView
-        android:id="@+id/tvAdress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         android:layout_below="@+id/tvName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        android:layout_above="@+id/btnAddToPlanning">
 
-    <RatingBar
-        android:id="@+id/rbPlaceRating"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:rating="4"
-        android:layout_below="@+id/tvIsOpen"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp" />
+        <TextView
+            android:id="@+id/tvAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvName"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:text="TextView"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvIsOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tvPhone"
+            android:layout_below="@+id/tvPhone"
+            android:layout_gravity="center_horizontal"
+            android:text="TextView"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <RatingBar
+            android:id="@+id/rbPlaceRating"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvIsOpen"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:numStars="5"
+            android:rating="4" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnAddToPlanning"
@@ -54,31 +89,8 @@
         android:layout_height="91dp"
         android:text="Add To Planning"
         android:layout_marginRight="8dp"
+
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
-
-        />
-
-    <TextView
-        android:id="@+id/tvPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/tvIsOpen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:layout_below="@+id/tvPhone"
-        android:layout_alignStart="@+id/tvPhone" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
