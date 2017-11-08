@@ -154,7 +154,7 @@ public class Tab2Fragment extends Fragment {
                 tvname.setText(p.getPlaceName());
                 rbRating.setRating(p.getStars());
                 tvOpeningTime.setText(String.format("Is open now: %s", p.isOpenNow()));
-                tvDistance.setText(String.format("%sm van je vandaan.", String.valueOf(p.getDistanceInM())));
+                tvDistance.setText(String.format("%s van je vandaan.", String.valueOf(p.getDistanceInM())));
             }
 
             return v;

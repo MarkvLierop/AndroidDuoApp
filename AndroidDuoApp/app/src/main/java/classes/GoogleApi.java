@@ -87,11 +87,11 @@ public class GoogleApi
         String googleRequestURL = "https://maps.googleapis.com/maps/api/distancematrix/json?" +
                 "units=metric&" +
                 "origins="+ PublicValues.myLocationLat + ","+ PublicValues.myLocationLng + "&" +
-                "destinations="+ destinationX + "%2C-"+ destinationY+"&" +
+                "destinations="+ destinationX + "%2C"+ destinationY+"&" +
                 "key=" + APIKEY;
 
         JSONObject object = parseJSON(googleRequestURL);
-        String distance = object.getJSONArray("rows").getJSONObject(0).getJSONObject("distance").getString("text");
+        String distance = object.getJSONArray("rows").getJSONObject(0).getJSONArray("elements").getJSONObject(0).getJSONObject("distance").getString("text");
 
         return distance;
     }
