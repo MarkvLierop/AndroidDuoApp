@@ -1,5 +1,7 @@
 package planet.androidduoapp;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,12 +15,20 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.ByteArrayOutputStream;
+import java.util.List;
+
+import classes.Place;
 
 
 public class GoogleMapsFragment extends Fragment {
     MapView mMapView;
     private GoogleMap googleMap;
+
+    private List<Place> places;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +53,7 @@ public class GoogleMapsFragment extends Fragment {
 
                 // For dropping a marker at a point on the Map
                 LatLng sydney = new LatLng(51.4555001,5.4805959);
-                googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
+                googleMap.addMarker(new MarkerOptions().position(sydney).title("Your location").snippet("You are here!"));
 
                 // For zooming automatically to the location of the marker
                 CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
@@ -52,6 +62,41 @@ public class GoogleMapsFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    public void updatePlaces(List<Place> p) {
+        places = p;
+        //add all markers
+        for(Place pl : places) {
+            googleMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(pl.getLocationX()), Double.parseDouble(pl.getLocationY()))).title(pl.getPlaceName()));
+        }
+
+        //Set on clickListnere on window
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Intent i = new Intent(getActivity(), PlaceDetailsActivity.class);
+
+                Place cur = null;
+                for(Place plo : places) {
+                    if(plo.getPlaceName().equals(marker.getTitle())) {
+                        cur = plo;
+                    }
+                }
+
+                if(cur != null) {
+                    i.putExtra("place", cur);
+
+                    ByteArrayOutputStream bs = new ByteArrayOutputStream();
+                    cur.getPlaceImage().compress(Bitmap.CompressFormat.PNG, 50, bs);
+                    i.putExtra("image", bs.toByteArray());
+
+                    startActivity(i);
+                }
+
+            }
+        });
+
     }
 
     @Override

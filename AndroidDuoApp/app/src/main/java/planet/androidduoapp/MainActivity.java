@@ -89,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
 
                         try {
                             if (spinner.getSelectedItem().toString().equals("Restaurants")) {
-                                places = ga.getNearbyPlacesRestaurants("51.4555001", "5.4805959");
+                                places = ga.getNearbyPlacesRestaurants(PublicValues.myLocationLat, PublicValues.myLocationLng);
                             } else if (spinner.getSelectedItem().toString().equals("Museums")) {
-                                places = ga.getNearbyPlacesMuseums("51.4555001", "5.4805959");
+                                places = ga.getNearbyPlacesMuseums(PublicValues.myLocationLat, PublicValues.myLocationLng);
                             } else if (spinner.getSelectedItem().toString().equals("Cafes")) {
-                                places = ga.getNearbyPlacesCafes("51.4555001", "5.4805959");
+                                places = ga.getNearbyPlacesCafes(PublicValues.myLocationLat, PublicValues.myLocationLng);
                             } else if (spinner.getSelectedItem().toString().equals("Aid")) {
-                                places = ga.getNearbyPlacesHealth("51.4555001", "5.4805959");
+                                places = ga.getNearbyPlacesHealth(PublicValues.myLocationLat, PublicValues.myLocationLng);
                             } else {
                                 return;
                             }
@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                             places = ga.getNearbyPlacesRestaurants("51.4555001", "5.4805959");
                             //Roep nu een methode in tab 2 aan
                             fragOverview.updatePlaces(places);
+                            fragMap.updatePlaces(places);
 
                         } catch (IOException e) {
                             e.printStackTrace();
