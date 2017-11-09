@@ -1,5 +1,6 @@
 package classes;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -12,11 +13,15 @@ public class Schedule
     private List<Place> places;
     private Date day;
 
-    public Schedule(String name, List<Place> places, Date day) {
+    public Schedule(String name, Date day) {
         this.name = name;
-        this.places = places;
         this.day = day;
+
+        places = new ArrayList<>();
     }
 
-
+    public void addPlace(Place place)
+    {
+        places.add(place);
+    }
 }
