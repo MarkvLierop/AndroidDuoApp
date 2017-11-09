@@ -12,9 +12,8 @@ public class Schedule
     private List<Place> places;
     private Date day;
 
-    public Schedule(String name, List<Place> places, Date day) {
+    public Schedule(String name, Date day) {
         this.name = name;
-        this.places = places;
         this.day = day;
     }
 
