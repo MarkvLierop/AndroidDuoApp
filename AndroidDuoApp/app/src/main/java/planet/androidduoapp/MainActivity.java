@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     private Button btnApplyFilter;
     private FloatingActionButton fab;
 
+    private GoogleMapsFragment fragMap;
+    private Tab2Fragment fragOverview;
+
     private List<Place> places;
 
 
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         //Set up the ViewPager with the sections adapter.
+        fragMap = new GoogleMapsFragment();
+        fragOverview = new Tab2Fragment();
         mViewPager = (ViewPager) findViewById(container);
         setupViewPager(mViewPager);
 
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 //dialog.setTitle("Title...");
 
                 // set the custom dialog components - text, image and button
-                Spinner spinner = (Spinner) dialog.findViewById(R.id.spFacilityType);
+                final Spinner spinner = (Spinner) dialog.findViewById(R.id.spFacilityType);
                 ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.facility_types, android.R.layout.simple_spinner_item);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
@@ -79,15 +84,31 @@ public class MainActivity extends AppCompatActivity {
                 dialogButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        GoogleApi ga = new GoogleApi();
                         dialog.dismiss();
-//                        GoogleApi ga = new GoogleApi();
-//                        try {
-//                            places = ga.getNearbyPlacesRestaurants("51.4555001","5.4805959");
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
+
+                        try {
+                            if (spinner.getSelectedItem().toString().equals("Restaurants")) {
+                                places = ga.getNearbyPlacesRestaurants("51.4555001", "5.4805959");
+                            } else if (spinner.getSelectedItem().toString().equals("Museums")) {
+                                places = ga.getNearbyPlacesMuseums("51.4555001", "5.4805959");
+                            } else if (spinner.getSelectedItem().toString().equals("Cafes")) {
+                                places = ga.getNearbyPlacesCafes("51.4555001", "5.4805959");
+                            } else if (spinner.getSelectedItem().toString().equals("Aid")) {
+                                places = ga.getNearbyPlacesHealth("51.4555001", "5.4805959");
+                            } else {
+                                return;
+                            }
+
+                            places = ga.getNearbyPlacesRestaurants("51.4555001", "5.4805959");
+                            //Roep nu een methode in tab 2 aan
+                            fragOverview.updatePlaces(places);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -103,27 +124,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-//        //Register for context menu.
-//        registerForContextMenu(btnApplyFilter);
     }
-
-    public void startFilterActivity() {
-
-    }
-
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-//        if(v.getId() == R.id.btnApplyFilter) {
-//            this.getMenuInflater().inflate(R.menu.menu_filter, menu);
-//        }
-//        super.onCreateContextMenu(menu, v, menuInfo);
-//    }
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new GoogleMapsFragment(), "Map");
-        adapter.addFragment(new Tab2Fragment(), "Overview");
+        adapter.addFragment(fragMap, "Map");
+        adapter.addFragment(fragOverview, "Overview");
         viewPager.setAdapter(adapter);
     }
 

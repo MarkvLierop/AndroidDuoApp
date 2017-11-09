@@ -89,12 +89,35 @@ public class Tab2Fragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+//    @Override
+//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//
+////        MainActivity ma = (MainActivity)getActivity();
+////        places = ma.getPlaces();
+//
+////        ListAdapter adapter = new ListAdapter(this.getContext(), R.layout.list_item_overview, places);
+////        lv.setAdapter(adapter);
+////        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+////            @Override
+////            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+////                Intent i = new Intent(getActivity(), PlaceDetailsActivity.class);
+////
+////                Place p = places.get(position);
+////                i.putExtra("place", p);
+////
+////                ByteArrayOutputStream bs = new ByteArrayOutputStream();
+////                places.get(position).getPlaceImage().compress(Bitmap.CompressFormat.PNG, 50, bs);
+////                i.putExtra("image", bs.toByteArray());
+////
+////                startActivity(i);
+////            }
+////        });
+//        //updatePlaces(ma.getPlaces());
+//    }
 
-        MainActivity ma = (MainActivity)getActivity();
-        places = ma.getPlaces();
+    public void updatePlaces(List<Place> p) {
+        this.places = p;
 
         ListAdapter adapter = new ListAdapter(this.getContext(), R.layout.list_item_overview, places);
         lv.setAdapter(adapter);
@@ -113,7 +136,6 @@ public class Tab2Fragment extends Fragment {
                 startActivity(i);
             }
         });
-
 
     }
 
@@ -159,6 +181,6 @@ public class Tab2Fragment extends Fragment {
         }
 
     }
-    }
+}
 
 

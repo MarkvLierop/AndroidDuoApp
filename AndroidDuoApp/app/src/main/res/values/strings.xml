@@ -7,11 +7,9 @@
 
     <string-array name="facility_types">
         <item>Restaurants</item>
-        <item>Shops</item>
         <item>Museums</item>
         <item>Cafes</item>
         <item>Aid</item>
-        <item>Companies</item>
     </string-array>
 
     <string-array name="sort_options">
