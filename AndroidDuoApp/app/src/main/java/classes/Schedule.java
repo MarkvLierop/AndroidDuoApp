@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.Map;
 
 import javax.xml.datatype.Duration;
 
-public class Schedule
+public class Schedule implements Serializable
 {
     private String name;
     private List<Place> places;
