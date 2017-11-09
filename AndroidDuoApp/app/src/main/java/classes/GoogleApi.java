@@ -24,6 +24,7 @@ import java.util.List;
 public class GoogleApi
 {
     private final static String APIKEY = "AIzaSyAekDAiLYoKsFRCFfjFoEb1XoVYnxgIU9g";
+    //AIzaSyAekDAiLYoKsFRCFfjFoEb1XoVYnxgIU9g
     private ArrayList<Place> places;
 
     public GoogleApi()
@@ -113,6 +114,8 @@ public class GoogleApi
 
     public List<Place> getNearbyPlacesMuseums(String locationX, String locationY) throws IOException, JSONException
     {
+        places = new ArrayList<>();
+
         String googleRequestURL = "https://maps.googleapis.com/maps/api/place/radarsearch/json?"+
                 "location="+locationX + ","+ locationY+"&"+
                 "radius=5000&" +
@@ -127,6 +130,8 @@ public class GoogleApi
 
     public List<Place> getNearbyPlacesCafes(String locationX, String locationY) throws IOException, JSONException
     {
+        places = new ArrayList<>();
+
         String googleRequestURL = "https://maps.googleapis.com/maps/api/place/radarsearch/json?"+
                 "location="+locationX + ","+ locationY+"&"+
                 "radius=5000&" +
@@ -141,6 +146,8 @@ public class GoogleApi
 
     public List<Place> getNearbyPlacesHealth(String locationX, String locationY) throws IOException, JSONException
     {
+        places = new ArrayList<>();
+
         String googleRequestURL = "https://maps.googleapis.com/maps/api/place/radarsearch/json?"+
                 "location="+locationX + ","+ locationY+"&"+
                 "radius=5000&" +
@@ -153,7 +160,7 @@ public class GoogleApi
         return places;
     }
 
-    public JSONObject parseJSON(String googleRequestURL) throws IOException, JSONException
+    private JSONObject parseJSON(String googleRequestURL) throws IOException, JSONException
     {
         // String om route te genereren
         //String Url = "https://maps.googleapis.com/maps/api/directions/json?origin=Bakel&destination=Helmond&key=" + APIKEY;
