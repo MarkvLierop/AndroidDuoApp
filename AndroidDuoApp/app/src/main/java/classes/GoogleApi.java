@@ -23,7 +23,7 @@ import java.util.List;
 
 public class GoogleApi
 {
-    private final static String APIKEY = "AIzaSyAekDAiLYoKsFRCFfjFoEb1XoVYnxgIU9g";
+    private final static String APIKEY = "AIzaSyDIk-zk1zWPix0aXszVLkWrU67uI9HtPpc";
     private ArrayList<Place> places;
 
     public GoogleApi()
