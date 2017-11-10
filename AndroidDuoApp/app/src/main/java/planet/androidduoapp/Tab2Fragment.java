@@ -113,7 +113,7 @@ public class Tab2Fragment extends Fragment {
     }
 
 
-    public class ListAdapter extends ArrayAdapter<Place> {
+    public static class ListAdapter extends ArrayAdapter<Place> {
 
         public ListAdapter(Context context, int textViewResourceId) {
             super(context, textViewResourceId);

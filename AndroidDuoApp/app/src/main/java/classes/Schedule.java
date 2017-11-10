@@ -11,19 +11,19 @@ import javax.xml.datatype.Duration;
 public class Schedule implements Serializable
 {
     private String name;
-    private List<Place> places;
+    private List<String> placeIds;
     private Date day;
 
     public Schedule(String name, Date day) {
         this.name = name;
         this.day = day;
 
-        places = new ArrayList<>();
+        placeIds = new ArrayList<>();
     }
 
-    public void addPlace(Place place)
+    public void addPlace(String place)
     {
-        places.add(place);
+        placeIds.add(place);
     }
 
     public String getName() {
@@ -34,12 +34,12 @@ public class Schedule implements Serializable
         this.name = name;
     }
 
-    public List<Place> getPlaces() {
-        return places;
+    public List<String> getPlaces() {
+        return placeIds;
     }
 
-    public void setPlaces(List<Place> places) {
-        this.places = places;
+    public void setPlaces(List<String> places) {
+        this.placeIds = places;
     }
 
     public Date getDay() {

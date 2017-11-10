@@ -134,7 +134,16 @@ public class ScheduleOverviewActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Open place details
+                Intent i = new Intent(context, ScheduleDetailsActivity.class);
+
+                Schedule sched = schedules.get(position);
+                i.putExtra("sched", sched);
+
+//                ByteArrayOutputStream bs = new ByteArrayOutputStream();
+//                places.get(position).getPlaceImage().compress(Bitmap.CompressFormat.PNG, 50, bs);
+//                i.putExtra("image", bs.toByteArray());
+
+                startActivity(i);
             }
         });
 
@@ -147,7 +156,7 @@ public class ScheduleOverviewActivity extends AppCompatActivity {
         etDate.setText(sdf.format(myCalendar.getTime()));
     }
 
-    public class ListAdapter extends ArrayAdapter<Schedule> {
+    public static class ListAdapter extends ArrayAdapter<Schedule> {
 
         public ListAdapter(Context context, int textViewResourceId) {
             super(context, textViewResourceId);

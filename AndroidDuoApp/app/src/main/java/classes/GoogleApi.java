@@ -39,7 +39,14 @@ public class GoogleApi
                                     "placeid="+place.getPlaceID()+"&" +
                                     "key=" + APIKEY;
 
-        JSONObject object = parseJSON(googleRequestURL);
+        place = setPlaceData(place, googleRequestURL);
+
+        return place;
+    }
+
+    private Place setPlaceData(Place place, String googleRequest) throws JSONException, IOException
+    {
+        JSONObject object = parseJSON(googleRequest);
         JSONArray res = object.getJSONObject("result").getJSONArray("address_components");
 
         for (int i = 0; i < res.length();i++)
@@ -56,10 +63,6 @@ public class GoogleApi
         String lng = object.getJSONObject("result").getJSONObject("geometry").getJSONObject("location").getString("lng");
         place.setDistanceInM(getDistance(lat, lng));
 
-        //werkt niet - gaat fout op parseINT
-//        String a = object.getJSONObject("result").getString("rating");
-//        int b = Integer.parseInt(a);
-//        place.setStars(Math.round(Integer.parseInt(object.getJSONObject("result").getString("rating"))));
         //Set rating
         String a = object.getJSONObject("result").getString("rating");
         double b = Double.parseDouble(a); //Integer.parseInt(a);
@@ -72,7 +75,6 @@ public class GoogleApi
 
         return place;
     }
-
     private Bitmap getPlacePhoto(String photoReference) throws IOException
     {
         String googleRequestURL = "https://maps.googleapis.com/maps/api/place/photo?" +
@@ -97,6 +99,7 @@ public class GoogleApi
 
         return distance;
     }
+
     public List<Place> getNearbyPlacesRestaurants(String locationX, String locationY) throws IOException, JSONException
     {
         places = new ArrayList<>();
@@ -183,6 +186,35 @@ public class GoogleApi
         return new JSONObject(jsonResults.toString());
 
 
+    }
+
+    public List<Place> getPlaceById(List<String> placeIds) throws IOException, JSONException {
+        places = new ArrayList<>();
+
+        int i = 0;
+        for (String id : placeIds)
+        {
+            Place place = new Place();
+
+            String googleRequestURL = "https://maps.googleapis.com/maps/api/place/details/json?" +
+                    "placeid="+id+"&" +
+                    "key=" + APIKEY;
+
+            JSONObject object = parseJSON(googleRequestURL);
+
+            JSONObject res = object.getJSONArray("result").getJSONObject(i).getJSONObject("geometry").getJSONObject("location");
+
+            place.setLocationX(res.getString("lat"));
+            place.setLocationY(res.getString("lng"));
+            place.setPlaceID(object.getJSONArray("results").getJSONObject(i).getString("place_id"));
+
+            place = setPlaceData(place, googleRequestURL);
+            places.add(place);
+
+            i++;
+        }
+
+        return places;
     }
 
     private void assignNearbyPlaceData(JSONObject object) throws JSONException, IOException
