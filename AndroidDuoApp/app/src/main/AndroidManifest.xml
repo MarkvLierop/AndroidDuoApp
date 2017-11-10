@@ -41,8 +41,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ScheduleOverviewActivity" />
-        <activity android:name=".AddScheduleActivity" />
         <activity android:name=".PlaceDetailsActivity" />
+        <activity android:name=".ScheduleDetailsActivity"></activity>
     </application>
 
 </manifest>
