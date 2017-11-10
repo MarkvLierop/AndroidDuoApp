@@ -11,7 +11,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="planet.androidduoapp.ScheduleOverviewActivity">
+        tools:context="planet.androidduoapp.ScheduleOverviewActivity"
+        android:id="@+id/relativeLayout">
 
         <TextView
             android:id="@+id/tvSchedules"
@@ -36,8 +37,10 @@
         android:id="@+id/fabAddPlann"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
+        android:layout_gravity="top|left"
         android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/relativeLayout"
+        app:layout_anchorGravity="bottom|left"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
 
