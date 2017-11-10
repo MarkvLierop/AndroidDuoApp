@@ -30,6 +30,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import classes.GoogleApi;
@@ -61,8 +64,8 @@ public class Tab2Fragment extends Fragment {
                 //dialog.setTitle("Title...");
 
                 // set the custom dialog components - text, image and button
-                Spinner spinner = (Spinner) dialog.findViewById(R.id.spSort);
-                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.sort_options, android.R.layout.simple_spinner_item);
+                final Spinner spinner = (Spinner) dialog.findViewById(R.id.spSort);
+                final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.sort_options, android.R.layout.simple_spinner_item);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
 
@@ -76,6 +79,32 @@ public class Tab2Fragment extends Fragment {
                 dialogButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        switch (spinner.getSelectedItem().toString())
+                        {
+                            case "Alpabet asc.":
+                                Collections.sort(places, new Comparator<Place>() {
+                                    @Override
+                                    public int compare(Place o1, Place o2) {
+                                        return o1.getPlaceName().compareTo(o2.getPlaceName());
+                                    }
+                                });
+                                break;
+                            case "Alpabet dec.":
+                                Collections.reverse(places);
+                                break;
+                            case "Distance asc.":
+                                Collections.sort(places, new Comparator<Place>() {
+                                    @Override
+                                    public int compare(Place o1, Place o2) {
+                                        return o1.getDistanceInM().compareTo(o2.getDistanceInM());
+                                    }
+                                });
+                                break;
+                            case "Distance dec.":
+                                Collections.reverse(places);
+                                break;
+                        }
+                        updatePlaces(places);
                         dialog.dismiss();
                     }
                 });
