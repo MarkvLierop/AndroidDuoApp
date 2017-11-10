@@ -47,15 +47,16 @@ public class PlaceDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_details);
 
-        image = (ImageView)findViewById(R.id.imgplaceDetailsPlaceImage);;
-        name = (TextView)findViewById(R.id.tvScheduleName);
-        adres = (TextView)findViewById(R.id.tvAdress);
-        phone = (TextView)findViewById(R.id.tvPhone);
-        isOpen = (TextView)findViewById(R.id.tvIsOpen);
-        rating = (RatingBar)findViewById(R.id.rbPlaceRating);
+        image = (ImageView) findViewById(R.id.imgplaceDetailsPlaceImage);
+        ;
+        name = (TextView) findViewById(R.id.tvScheduleName);
+        adres = (TextView) findViewById(R.id.tvAdress);
+        phone = (TextView) findViewById(R.id.tvPhone);
+        isOpen = (TextView) findViewById(R.id.tvIsOpen);
+        rating = (RatingBar) findViewById(R.id.rbPlaceRating);
 
         final Place p = (Place) getIntent().getSerializableExtra("place");
-        p.setPlaceImage(BitmapFactory.decodeByteArray(getIntent().getByteArrayExtra("image"),0,getIntent().getByteArrayExtra("image").length));
+        p.setPlaceImage(BitmapFactory.decodeByteArray(getIntent().getByteArrayExtra("image"), 0, getIntent().getByteArrayExtra("image").length));
 
         inputObject(p);
 
@@ -82,13 +83,13 @@ public class PlaceDetailsActivity extends AppCompatActivity {
                         //Voeg toe aan die place
                         //TODO verander dit nog naar een juiste controle of maak naam uniek
                         int indexToChange = -1;
-                        for(Schedule s : schedules) {
-                            if(s.getName().equals(toChange.getName())) {
+                        for (Schedule s : schedules) {
+                            if (s.getName().equals(toChange.getName())) {
                                 indexToChange = schedules.indexOf(s);
                             }
                         }
 
-                        if(indexToChange!=-1) {
+                        if (indexToChange != -1) {
                             schedules.get(indexToChange).getPlaces().add(p.getPlaceID());
                             fs.addPlanning(context, schedules, FILE_NAME);
                             Toast.makeText(context, "Place has been added to your selected schedule", Toast.LENGTH_SHORT).show();
@@ -104,11 +105,10 @@ public class PlaceDetailsActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     public void inputObject(Place p) {
-        if(p!=null) {
+        if (p != null) {
             image.setImageBitmap(p.getPlaceImage());
             name.setText(p.getPlaceName());
             adres.setText("Adress: " + p.getStreetName() + ", " + p.getCityName());

@@ -41,8 +41,10 @@
         android:id="@+id/fabPlan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
+        android:layout_gravity="top|right"
         android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/container"
+        app:layout_anchorGravity="bottom|left"
         app:srcCompat="@android:drawable/ic_menu_agenda" />
 
 </android.support.design.widget.CoordinatorLayout>
