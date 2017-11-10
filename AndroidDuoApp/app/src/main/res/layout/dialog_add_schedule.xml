@@ -23,8 +23,10 @@
         android:id="@+id/etScheduleDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="none"
+        android:textIsSelectable="true"
         android:ems="10"
-        android:inputType="date" />
+        android:text="Date" />
 
     <Button
         android:id="@+id/btnAddSchedule"
