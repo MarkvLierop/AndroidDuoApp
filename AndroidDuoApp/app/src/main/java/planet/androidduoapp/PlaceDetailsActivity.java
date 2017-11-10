@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -89,9 +90,10 @@ public class PlaceDetailsActivity extends AppCompatActivity {
 
                         if(indexToChange!=-1) {
                             schedules.get(indexToChange).getPlaces().add(p.getPlaceID());
+                            fs.addPlanning(context, schedules, FILE_NAME);
+                            Toast.makeText(context, "Place has been added to your selected schedule", Toast.LENGTH_SHORT).show();
                         }
 
-                        fs.addPlanning(context, schedules, FILE_NAME);
 
                         dialog.dismiss();
                     }

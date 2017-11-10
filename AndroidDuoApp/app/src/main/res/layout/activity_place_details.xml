@@ -85,12 +85,14 @@
 
     <Button
         android:id="@+id/btnAddToPlanning"
-        android:layout_width="360dp"
-        android:layout_height="91dp"
-        android:text="Add To Planning"
-        android:layout_marginRight="8dp"
-
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorPrimary"
+        android:text="Add to schedule"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="18sp" />
 
 </RelativeLayout>
