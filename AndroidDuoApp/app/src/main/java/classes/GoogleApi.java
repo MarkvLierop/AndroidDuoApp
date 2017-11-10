@@ -25,7 +25,6 @@ public class GoogleApi
 {
     private final static String APIKEY = "AIzaSyDIk-zk1zWPix0aXszVLkWrU67uI9HtPpc";
 //    private final static String APIKEY = "AIzaSyAekDAiLYoKsFRCFfjFoEb1XoVYnxgIU9g";
-    //AIzaSyAekDAiLYoKsFRCFfjFoEb1XoVYnxgIU9g
     private ArrayList<Place> places;
 
     public GoogleApi()
@@ -56,10 +55,6 @@ public class GoogleApi
         String lng = object.getJSONObject("result").getJSONObject("geometry").getJSONObject("location").getString("lng");
         place.setDistanceInM(getDistance(lat, lng));
 
-        //werkt niet - gaat fout op parseINT
-//        String a = object.getJSONObject("result").getString("rating");
-//        int b = Integer.parseInt(a);
-//        place.setStars(Math.round(Integer.parseInt(object.getJSONObject("result").getString("rating"))));
         //Set rating
         String a = object.getJSONObject("result").getString("rating");
         double b = Double.parseDouble(a); //Integer.parseInt(a);
@@ -201,7 +196,7 @@ public class GoogleApi
             place = getPlaceData(place);
             places.add(place);
 
-            if (i == 10)
+            if (i == 6)
             {
                 break;
             }
