@@ -70,7 +70,7 @@ public class GoogleApi
         // werkt niet
         //place.setOpenNow(object.getJSONObject("result").getJSONObject("opening_hours").getString("open_now").equals("true") ? "Yes" : "No");
         // werkt well
-        place.setOpenNow("No");
+        place.setOpenNow("Yes");
 
         return place;
     }
@@ -201,11 +201,11 @@ public class GoogleApi
 
             JSONObject object = parseJSON(googleRequestURL);
 
-            JSONObject res = object.getJSONArray("result").getJSONObject(i).getJSONObject("geometry").getJSONObject("location");
+            JSONObject res = object.getJSONObject("result").getJSONObject("geometry").getJSONObject("location");
 
             place.setLocationX(res.getString("lat"));
             place.setLocationY(res.getString("lng"));
-            place.setPlaceID(object.getJSONArray("results").getJSONObject(i).getString("place_id"));
+            place.setPlaceID(id);
 
             place = setPlaceData(place, googleRequestURL);
             places.add(place);

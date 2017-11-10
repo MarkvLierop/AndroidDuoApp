@@ -66,6 +66,10 @@ public class GoogleMapsFragment extends Fragment {
 
     public void updatePlaces(List<Place> p) {
         places = p;
+        //Clear previous markers
+        googleMap.clear();
+        LatLng sydney = new LatLng(51.4555001,5.4805959);
+        googleMap.addMarker(new MarkerOptions().position(sydney).title("Your location").snippet("You are here!"));
         //add all markers
         for(Place pl : places) {
             googleMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(pl.getLocationX()), Double.parseDouble(pl.getLocationY()))).title(pl.getPlaceName()));

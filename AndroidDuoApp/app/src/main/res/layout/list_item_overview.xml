@@ -11,14 +11,15 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
+        android:paddingRight="10dp"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/tvNamePlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/ivPicPlace"
-        android:paddingBottom="10dp"
+        android:paddingBottom="2dp"
         android:text="TextView"
         android:textStyle="bold" />
 
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:numStars="5"
         android:rating="4"
+        android:paddingBottom="2dp"
         android:layout_below="@+id/tvNamePlace"
         android:layout_toEndOf="@+id/ivPicPlace" />
 
@@ -37,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:paddingBottom="2dp"
         android:layout_below="@+id/rbRatingPlace"
         android:layout_toEndOf="@+id/ivPicPlace" />
 

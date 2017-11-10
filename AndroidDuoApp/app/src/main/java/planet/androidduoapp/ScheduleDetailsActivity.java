@@ -48,9 +48,7 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
 
         try {
             inputObject(scheduleCur);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
     }
