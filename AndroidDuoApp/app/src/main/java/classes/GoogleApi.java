@@ -25,7 +25,6 @@ public class GoogleApi
 {
     private final static String APIKEY = "AIzaSyDIk-zk1zWPix0aXszVLkWrU67uI9HtPpc";
 //    private final static String APIKEY = "AIzaSyAekDAiLYoKsFRCFfjFoEb1XoVYnxgIU9g";
-    //AIzaSyAekDAiLYoKsFRCFfjFoEb1XoVYnxgIU9g
     private ArrayList<Place> places;
 
     public GoogleApi()
@@ -233,7 +232,7 @@ public class GoogleApi
             place = getPlaceData(place);
             places.add(place);
 
-            if (i == 10)
+            if (i == 6)
             {
                 break;
             }

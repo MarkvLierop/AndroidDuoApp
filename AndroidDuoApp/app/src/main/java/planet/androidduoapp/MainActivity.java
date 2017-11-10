@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                                 return;
                             }
 
-                            places = ga.getNearbyPlacesRestaurants("51.4555001", "5.4805959");
                             //Roep nu een methode in tab 2 aan
                             fragOverview.updatePlaces(places);
                             fragMap.updatePlaces(places);
